@@ -19,7 +19,7 @@ the creator's 80% goes to their balance, and they request a payout.
 ## Rules (always)
 
 - **Confirm before acting.** Before `accept_offer`, `decline_offer`, `counter_offer`, `update_my_profile` (prices),
-  `submit_post`, `add_payout_method` or `request_payout`, show the creator exactly what will happen and wait for a clear
+  `submit_post`, `open_dispute`, `add_payout_method` or `request_payout`, show the creator exactly what will happen and wait for a clear
   "yes" in the chat.
 - Accepting commits the creator to post; the brand's card is charged at that moment.
 - You never post on X for the creator. They post themselves, then you submit the link.
@@ -57,6 +57,10 @@ the creator's 80% goes to their balance, and they request a payout.
    (Content Disclosure in the X composer).
 3. `submit_post` with `offerId`, the post `url` and `paidPartnershipLabel: true` (optionally a `note` or a screenshot
    of the label). The offer is then **in review** until the Transformer team confirms the post.
+4. If `get_offer` shows **sent back**, tell the creator the reason, fix the post and `submit_post` again.
+5. If something goes wrong with a deal (for example the brand asks for something not in the offer), `open_dispute` with
+   `reason` (`not_posted`, `post_issue`, `cancel_request` or `other`) and `details` (10+ characters), after a yes. It
+   freezes the payment until the Transformer team resolves it.
 
 ## Balance and payouts
 

@@ -18,10 +18,11 @@ the post. Sending is free: the brand's saved card is charged only when a creator
 
 ## Rules (always)
 
-- **Confirm before anything that sends or costs money.** Before `send_offers`, `create_offer`, `approve_drafts`,
-  `accept_counter`, `counter_offer`, `decline_counter`, `cancel_offer` or `pay_offers`, show the user exactly what will
-  happen (creators, prices, ask, how long the offer is good for) and wait for a clear "yes" in the chat. A yes for one
-  batch doesn't carry over to the next.
+- **Confirm before anything that sends an offer, accepts, counters, cancels, disputes or pays.** That includes
+  `send_offers`, `create_offer`, `create_offers_bulk`, `send_brief_offers`, `approve_drafts`, `accept_counter`,
+  `counter_offer`, `decline_counter`, `cancel_offer`, `open_dispute`, `pay_offers` and `request_funding`. Show the user
+  exactly what will happen (creators, prices, ask, how long the offer is good for) and wait for a clear "yes" in the
+  chat. A yes for one batch doesn't carry over to the next.
 - **Offers are binding.** If the creator accepts before it expires, the card is charged automatically. Say so before the
   first send, and pass `acknowledgeBinding: true` only after the user has agreed.
 - Only contact creators through Transformer. Don't DM, email or tag them yourself.
@@ -49,7 +50,8 @@ from the error and wait:
 1. `suggestions`: creators matched to the brand's website, each with why they fit and a suggested price. Filters:
    `budget`, `size` (micro, mid, large), `hasPaidPartnerships`, `featured`, `sort`.
 2. `search_creators` for a specific search (`query`, `minFollowers`, `maxPrice`, `topics`, `sort`, …).
-3. `get_creator` for one creator's details. `write_asks` (with `profileIds`) drafts a short ask per creator.
+3. `get_creator` (`creatorWorkspaceId`: the suggestion's `workspaceId`; only for creators already on Transformer) for
+   one creator's details. `write_asks` (with `profileIds`) drafts a short ask per creator.
 
 Show the user a short list (handle, followers, why they fit, price) and let them choose.
 
@@ -62,13 +64,14 @@ Show the user a short list (handle, followers, why they fit, price) and let them
    `expectedPriceUsd` (`409 price_changed` means a price moved: show the new one and ask again).
 3. Call `send_offers` with `url` and `items` (each `{ profileId or creator: "@handle", ask, priceUsd?, expiresInDays? }`).
    Other answers: `409 binding_ack_required` (explain, get a yes, resend with `acknowledgeBinding: true`) and
-   `409 payment_overdue` (an earlier charge failed; see Money below).
+   `409 payment_overdue` (an earlier accepted offer wasn't paid in time; new offers and counters are paused until the
+   `payUrl` is paid; see Money below).
 
 ## Track
 
 - `list_offers` (`stage: "your_move"` shows what needs the brand), `get_offer`, `offers_summary`.
-- Every offer has one `stageInfo`: sent, viewed, countered, accepted, funded, in review, confirmed, paid; or declined,
-  expired, cancelled. Report it in those words.
+- Every offer has one `stageInfo`: sent, not delivered, viewed, countered, accepted, payment needed, funded, in review,
+  sent back, confirmed, paid; or declined, expired, cancelled. Report it in those words.
 
 ## Counter-offers
 
@@ -79,12 +82,16 @@ card), `counter_offer` with a new `payoutUsd`, or `decline_counter`. Each side h
 
 When a creator submits their post the offer is **in review**. Check it with `get_offer`; `approve_post_early` tells
 the team the brand is happy, but the Transformer team still confirms it before the payment is released. If something
-is wrong, `open_dispute` with a reason.
+is wrong, `open_dispute` with `reason` (`not_posted`, `post_issue`, `cancel_request` or `other`) and `details` (10+
+characters), after a yes: it freezes the payment until the Transformer team resolves it.
 
 ## Money
 
 - `offers_summary` shows committed, held and spent amounts and the balance.
-- If a card charge failed after an accept, `pay_offers` pays it (balance first, then a checkout link). Within 72 hours,
+- If a card charge failed after an accept, the stage is **payment needed** and `pay_offers` pays it (balance first, then a checkout link). Within 72 hours,
   or the offer is cancelled. Confirm first.
-- `cancel_offer` withdraws an offer only before the creator accepts it (`409 offer_binding` after that).
+- `cancel_offer` withdraws an offer only before the creator accepts it (or, if `/api/config` `offerWithdrawUntil` is
+  `viewed`, before they view it); otherwise `409 offer_binding`. After an accept the brand can't back out: if payment
+  is due, `pay_offers`; if it's funded and something's wrong, `open_dispute` with reason `cancel_request`
+  (`409 cancel_needs_dispute`).
 - The card and receipts are on the brand's Billing page in the app.
