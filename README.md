@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/icon.png" alt="Transformer" width="72">
+</p>
+
 # Transformer skills
 
 [![skills.sh](https://skills.sh/b/transformer-gg/skills)](https://skills.sh/transformer-gg/skills)
