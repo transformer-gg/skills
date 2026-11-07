@@ -48,3 +48,9 @@ The skills use Transformer's MCP server, `https://transformer.gg/mcp` (streamabl
 - Docs: [transformer.gg/docs](https://transformer.gg/docs?utm_source=skills_sh&utm_medium=referral&utm_campaign=skills&utm_content=readme#mcp)
 
 Questions: support@transformer.gg
+
+---
+
+This repository is a published mirror. The skills are maintained with Transformer's product code and synced here
+automatically on every change, checked against the live MCP tools, so please don't open pull requests here. Report
+problems in [Issues](https://github.com/transformer-gg/skills/issues) or at support@transformer.gg.

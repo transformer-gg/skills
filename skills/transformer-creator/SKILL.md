@@ -69,9 +69,10 @@ the creator's 80% goes to their balance, and they request a payout.
 
 - `get_balance` and `get_earnings`: available, pending (posts not yet confirmed) and paid.
 - `list_payout_methods` shows the creator's saved payout methods (masked).
-- `request_payout` (minimum $10; whole balance if `amountUsd` is left out) asks the Transformer team for a payout. The
-  team reviews each request and sends it by hand, only to a payout method the creator saved in Settings, and the
-  creator gets an email when it's sent.
-- **Never ask for or handle card, bank or wallet details.** To add or change a payout method, send the creator to
-  https://transformer.gg/settings/payouts?utm_source=skills_sh&utm_medium=referral&utm_campaign=skills&utm_content=transformer-creator to do it themselves.
+- `request_payout` (minimum $10; whole balance if `amountUsd` is left out; to the default saved method unless
+  `methodId` names another saved one) asks the Transformer team for a payout. The team reviews each request and sends
+  it by hand, only to a method the creator saved on the website, and the creator gets an email when it's sent.
+- **Payout methods are set up by the creator on https://transformer.gg/settings/payouts?utm_source=skills_sh&utm_medium=referral&utm_campaign=skills&utm_content=transformer-creator,
+  signed in.** Agents can't add or change them or pick the default (the API refuses). If none is saved, send the
+  creator that link. Never ask for or handle card, bank or wallet details.
 - If a tax form is required, it's at https://transformer.gg/settings/tax-form?utm_source=skills_sh&utm_medium=referral&utm_campaign=skills&utm_content=transformer-creator
