@@ -57,7 +57,8 @@ the creator's 80% goes to their balance, and they request a payout.
    (Content Disclosure in the X composer).
 3. `submit_post` with `offerId`, the post `url` and `paidPartnershipLabel: true` (optionally a `note` or a screenshot
    of the label). The offer is then **in review** until the Transformer team confirms the post.
-4. If `get_offer` shows **sent back**, tell the creator the reason, fix the post and `submit_post` again.
+4. If `get_offer` shows **Fix and resubmit** (stage `rejected`), tell the creator the reason, fix the post and
+   `submit_post` again.
 5. If something goes wrong with a deal (for example the brand asks for something not in the offer), `open_dispute` with
    `reason` (`not_posted`, `post_issue`, `cancel_request` or `other`) and `details` (10+ characters), after a yes. It
    freezes the payment until the Transformer team resolves it.
