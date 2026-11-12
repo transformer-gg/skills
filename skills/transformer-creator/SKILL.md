@@ -1,7 +1,7 @@
 ---
 name: transformer-creator
 description: Manage a creator's paid X (Twitter) brand deals on Transformer (transformer.gg) through its MCP server. Use when an X creator wants to see their offers, set their usual price, accept, decline or counter an offer, submit the post they published, check their balance or request a payout. Never accepts, counters, declines or requests a payout without the creator's explicit confirmation in the chat.
-version: 1.0.0
+version: 1.1.0
 author: Transformer (transformer.gg)
 license: MIT
 metadata:
@@ -35,6 +35,14 @@ the creator's 80% goes to their balance, and they request a payout.
 - REST fallback: the same actions under `https://transformer.gg/api/v1`; see
   https://transformer.gg/docs?utm_source=skills_sh&utm_medium=referral&utm_campaign=skills&utm_content=transformer-creator
 - Start with `whoami`. It must be a **creator** workspace; for a brand use the `transformer-brand` skill.
+
+## Influencer value (free)
+
+- `get_influencer_value` with the creator's `handle` shows their influencer value: our estimate for one sponsored
+  post (a range and a usual price, with the method in one line). It's free and needs no key: `https://transformer.gg/mcp/public`
+  works before they sign up. It's an estimate, not an offer or a promise of pay.
+- Use it to help them pick a usual price, then set it with `update_my_profile` after a yes. More:
+  https://transformer.gg/value?utm_source=skills_sh&utm_medium=referral&utm_campaign=skills&utm_content=transformer-creator
 
 ## Profile and usual price
 
