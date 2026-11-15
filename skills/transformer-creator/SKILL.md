@@ -1,7 +1,7 @@
 ---
 name: transformer-creator
 description: Manage a creator's paid X (Twitter) brand deals on Transformer (transformer.gg) through its MCP server. Use when an X creator wants to see their offers, set their usual price, accept, decline or counter an offer, submit the post they published, check their balance or request a payout. Never accepts, counters, declines or requests a payout without the creator's explicit confirmation in the chat.
-version: 1.1.0
+version: 1.1.1
 author: Transformer (transformer.gg)
 license: MIT
 metadata:
@@ -19,7 +19,7 @@ the creator's 80% goes to their balance, and they request a payout.
 ## Rules (always)
 
 - **Confirm before acting.** Before `accept_offer`, `decline_offer`, `counter_offer`, `update_my_profile` (prices),
-  `submit_post`, `open_dispute` or `request_payout`, show the creator exactly what will happen and wait for a clear
+  `submit_post_draft`, `submit_post`, `open_dispute` or `request_payout`, show the creator exactly what will happen and wait for a clear
   "yes" in the chat.
 - Accepting commits the creator to post.
 - You never post on X for the creator. They post themselves, then you submit the link.
@@ -63,13 +63,19 @@ the creator's 80% goes to their balance, and they request a payout.
 ## Post and submit
 
 1. Wait until `get_offer` shows the offer **funded**.
-2. The creator posts on X themselves: their own words, the tracked link, and X's Paid partnership label turned on
-   (Content Disclosure in the X composer).
-3. `submit_post` with `offerId`, the post `url` and `paidPartnershipLabel: true` (optionally a `note` or a screenshot
+2. **Draft first (required for offers accepted from November 15, 2026, 3:33 PM ET).** Write the exact post with the
+   creator, including their tracked link (`postLink` in `get_deal`), then `submit_post_draft` with `offerId`, `text`
+   and optional `images` (up to 4, as data URLs) after a yes. The brand approves it or asks for changes; it's approved
+   automatically 48 hours after it's sent. If `get_offer` shows **Changes asked**, show the creator the brand's note,
+   edit and send again (up to 3 drafts). Offers accepted before that time skip this step.
+3. Once the draft is approved (**Approved: post it now**), the creator posts on X themselves: exactly the approved text,
+   with the tracked link and X's Paid partnership label turned on (Content Disclosure in the X composer).
+   `submit_post` before approval returns `draft_required`.
+4. `submit_post` with `offerId`, the post `url` and `paidPartnershipLabel: true` (optionally a `note` or a screenshot
    of the label). The offer is then **in review** until the Transformer team confirms the post.
-4. If `get_offer` shows **Fix and resubmit** (stage `rejected`), tell the creator the reason, fix the post and
+5. If `get_offer` shows **Fix and resubmit** (stage `rejected`), tell the creator the reason, fix the post and
    `submit_post` again.
-5. If something goes wrong with a deal (for example the brand asks for something not in the offer), `open_dispute` with
+6. If something goes wrong with a deal (for example the brand asks for something not in the offer), `open_dispute` with
    `reason` (`not_posted`, `post_issue`, `cancel_request` or `other`) and `details` (10+ characters), after a yes. It
    freezes the payment until the Transformer team resolves it.
 

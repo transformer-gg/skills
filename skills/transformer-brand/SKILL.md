@@ -1,7 +1,7 @@
 ---
 name: transformer-brand
 description: Run paid X (Twitter) creator partnerships for a brand on Transformer (transformer.gg) through its MCP server. Use when the user wants to find X creators or influencers for their brand, send them paid offers, track offers, handle creator counter-offers, approve creators' posts or see what they've spent. Never sends an offer or moves money without the user's explicit confirmation in the chat.
-version: 1.1.0
+version: 1.1.1
 author: Transformer (transformer.gg)
 license: MIT
 metadata:
@@ -79,13 +79,22 @@ Show the user a short list (handle, followers, why they fit, price) and let them
 ## Track
 
 - `list_offers` (`stage: "your_move"` shows what needs the brand), `get_offer`, `offers_summary`.
-- Every offer has one `stageInfo`: sent, not delivered, viewed, countered, accepted, payment needed, funded, in review,
+- Every offer has one `stageInfo`: sent, not delivered, viewed, countered, accepted, payment needed, funded, draft to
+  review, changes asked, draft approved, in review,
   sent back, confirmed, paid; or declined, expired, cancelled. Report it in those words.
 
 ## Counter-offers
 
 A creator may counter with their own price. The brand can `accept_counter` (accepts at their price and charges the
 card), `counter_offer` with a new `payoutUsd`, or `decline_counter`. Each side has at most 3 counters. Confirm first.
+
+## Post drafts
+
+For offers accepted from November 15, 2026, 3:33 PM ET, the creator sends their exact post for approval before
+posting. `list_post_drafts` shows drafts waiting for the brand, oldest first, with when each is approved automatically
+(48 hours after it was sent). Show the brand the text, then, after a yes, `approve_post_draft` with `offerId`, or
+`request_post_changes` with `offerId` and a `note` saying what to change. Changes can't be asked on the 3rd draft:
+approve it or open a dispute.
 
 ## Posts
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1 (2026-11-15)
+
+- Agent skills: the brand approves the creator's post draft (#746)
+
 ## v1.1.0 (2026-11-12)
 
 - Skills and MCP listings: the free get_influencer_value tool (#416)

@@ -1,7 +1,7 @@
 ---
 name: transformer
 description: Entry point for Transformer (transformer.gg), the marketplace for paid partnerships on X (Twitter) built for AI agents. Use when the user mentions Transformer or wants to run, find or take paid X creator deals; it decides whether they're a brand or a creator and hands off to transformer-brand or transformer-creator.
-version: 1.1.0
+version: 1.1.1
 author: Transformer (transformer.gg)
 license: MIT
 metadata:
@@ -12,8 +12,8 @@ metadata:
 
 # Transformer
 
-Transformer connects brands with X creators for paid posts. Brands send offers; creators accept, post with X's Paid
-partnership label and are paid once the Transformer team confirms the post. Sending is free; a brand's saved card is
+Transformer connects brands with X creators for paid posts. Brands send offers; creators accept, send their post as a draft for
+the brand to approve, post it with X's Paid partnership label and are paid once the Transformer team confirms the post. Sending is free; a brand's saved card is
 charged only when a creator accepts.
 
 1. Connect to the MCP server `https://transformer.gg/mcp` (registry name `gg.transformer/transformer`) with OAuth, or
