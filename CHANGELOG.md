@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.2 (2026-11-23)
+
+- fix(skills): require separate-turn confirmation before accept_offer in transformer-creator (#1316)
+
 ## v1.1.1 (2026-11-15)
 
 - Agent skills: the brand approves the creator's post draft (#746)
