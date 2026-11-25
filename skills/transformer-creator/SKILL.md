@@ -1,7 +1,7 @@
 ---
 name: transformer-creator
 description: Manage a creator's paid X (Twitter) brand deals on Transformer (transformer.gg) through its MCP server. Use when an X creator wants to see their offers, set their usual price, accept, decline or counter an offer, submit the post they published, check their balance or request a payout. Never accepts, counters, declines or requests a payout without the creator's explicit confirmation in the chat.
-version: 1.1.2
+version: 1.1.3
 author: Transformer (transformer.gg)
 license: MIT
 metadata:
@@ -83,8 +83,10 @@ the creator's 80% goes to their balance, and they request a payout.
 - `get_balance` and `get_earnings`: available, pending (posts not yet confirmed) and paid.
 - `list_payout_methods` shows the creator's saved payout methods (masked).
 - `request_payout` (minimum $10; whole balance if `amountUsd` is left out; to the default saved method unless
-  `methodId` names another saved one) asks the Transformer team for a payout. The team reviews each request and sends
-  it by hand, only to a method the creator saved on the website, and the creator gets an email when it's sent.
+  `methodId` names another saved one) asks the Transformer team for a payout. Payout platform fee: $1 for payouts of
+  $100 or more, and $5 for payouts under $100 (creators can hold their balance until it reaches $100 or withdraw
+  anytime from $10). The team reviews each request and sends it by hand, only to a method the creator saved on the
+  website, and the creator gets an email when it's sent.
 - **Payout methods are set up by the creator on https://transformer.gg/settings/payouts?utm_source=skills_sh&utm_medium=referral&utm_campaign=skills&utm_content=transformer-creator,
   signed in.** Agents can't add or change them or pick the default (the API refuses). If none is saved, send the
   creator that link. Never ask for or handle card, bank or wallet details.

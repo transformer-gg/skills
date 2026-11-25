@@ -1,7 +1,7 @@
 ---
 name: transformer-brand
 description: Run paid X (Twitter) creator partnerships for a brand on Transformer (transformer.gg) through its MCP server. Use when the user wants to find X creators or influencers for their brand, send them paid offers, track offers, handle creator counter-offers, approve creators' posts or see what they've spent. Never sends an offer or moves money without the user's explicit confirmation in the chat.
-version: 1.1.2
+version: 1.1.3
 author: Transformer (transformer.gg)
 license: MIT
 metadata:

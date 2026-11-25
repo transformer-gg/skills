@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.3 (2026-11-25)
+
+- docs(skills): document creator payout platform fee in transformer-creator SKILL.md (#1513)
+
 ## v1.1.2 (2026-11-23)
 
 - fix(skills): require separate-turn confirmation before accept_offer in transformer-creator (#1316)
