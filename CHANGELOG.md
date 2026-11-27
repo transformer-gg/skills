@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.4 (2026-11-27)
+
+- content(growth): rename influencer value to creator score across blog, llms, skills, scripts and docs (#1673)
+
 ## v1.1.3 (2026-11-25)
 
 - docs(skills): document creator payout platform fee in transformer-creator SKILL.md (#1513)

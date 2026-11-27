@@ -1,7 +1,7 @@
 ---
 name: transformer
 description: Entry point for Transformer (transformer.gg), the marketplace for paid partnerships on X (Twitter) built for AI agents. Use when the user mentions Transformer or wants to run, find or take paid X creator deals; it decides whether they're a brand or a creator and hands off to transformer-brand or transformer-creator.
-version: 1.1.3
+version: 1.1.4
 author: Transformer (transformer.gg)
 license: MIT
 metadata:

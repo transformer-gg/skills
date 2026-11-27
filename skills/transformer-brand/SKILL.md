@@ -1,7 +1,7 @@
 ---
 name: transformer-brand
 description: Run paid X (Twitter) creator partnerships for a brand on Transformer (transformer.gg) through its MCP server. Use when the user wants to find X creators or influencers for their brand, send them paid offers, track offers, handle creator counter-offers, approve creators' posts or see what they've spent. Never sends an offer or moves money without the user's explicit confirmation in the chat.
-version: 1.1.3
+version: 1.1.4
 author: Transformer (transformer.gg)
 license: MIT
 metadata:
@@ -58,7 +58,7 @@ from the error and wait:
 3. `get_creator` (`creatorWorkspaceId`: the suggestion's `workspaceId`; only for creators already on Transformer) for
    one creator's details. `write_asks` (with `profileIds`) drafts a short ask per creator.
 
-4. `get_influencer_value` (`handle`) gives any X account's influencer value: our estimate for one sponsored post, as
+4. `get_influencer_value` (`handle`) gives any X account's creator score and the estimated rate brands would pay for one sponsored post, as
    a range and a usual price. It's free, needs no key and also works at `https://transformer.gg/mcp/public`. It's a
    pricing guide, not the creator's quote.
 
